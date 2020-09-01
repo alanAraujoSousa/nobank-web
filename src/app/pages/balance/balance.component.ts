@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountService } from '../../shared/services/account.service';  
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-balance',
@@ -10,6 +11,7 @@ import { AccountService } from '../../shared/services/account.service';
 export class BalanceComponent implements OnInit {
 
   formTransaction: FormGroup; 
+  public balance: string;
 
   constructor(private _fb: FormBuilder, private accountService: AccountService) { }
 
@@ -19,7 +21,11 @@ export class BalanceComponent implements OnInit {
     });  
   }
 
-  performTransaction(value) {  
-    debugger;
+  performTransaction() {  
+    let id = this.formTransaction.value.accountId;
+    this.accountService.getBalance(id).pipe(take(1)).subscribe(d => {
+        this.balance = d.body;
+      }
+    );
   }  
 }

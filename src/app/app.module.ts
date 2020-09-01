@@ -12,6 +12,7 @@ import { BalanceComponent } from './pages/balance/balance.component';
 import { DepositComponent } from './pages/deposit/deposit.component';  
 import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Globals } from './globals';
     BrowserModule,
     AppRoutingModule,
     FormsModule,  
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    ToastrModule.forRoot() 
   ],
   providers: [Globals],
   bootstrap: [AppComponent]
