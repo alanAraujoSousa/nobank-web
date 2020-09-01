@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';  
 import { FormGroup, FormBuilder } from '@angular/forms';  
-import { AccountService } from '../services/account.service';  
+import { AccountService } from '../../shared/services/account.service';  
 
 @Component({  
   selector: 'app-withdraw',  

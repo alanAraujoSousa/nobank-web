@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../../shared/services/account.service';  
 
 @Component({
   selector: 'app-balance',

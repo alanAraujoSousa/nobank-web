@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';  
 import { FormGroup, FormBuilder } from '@angular/forms';  
-import { AccountService } from '../services/account.service';  
+import { AccountService } from '../../shared/services/account.service';  
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -21,10 +21,9 @@ export class DepositComponent implements OnInit {
     });  
   }
 
-  performTransaction(value) {  
-    debugger;
-    let id = "";
-    let dto = {};
+  performTransaction() {  
+    let id = this.formTransaction.value.accountId;
+    let dto = {moneyAmount: this.formTransaction.value.moneyAmount};
     this.accountService.deposit(id, dto).pipe(take(1)).subscribe(d => {
         //TODO launch a alert!
       }
