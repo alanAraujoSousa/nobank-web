@@ -11,12 +11,12 @@
                     <input id="accountId" formControlName="accountId" type="text" class="form-control" required />  
                 </div>  
                 <div class="form-group">  
-                    <label for="email">Money Amount: </label>  
-                    <input id="email" formControlName="moneyAmount" type="number" class="form-control" required />  
+                    <label for="moneyAmount">Money Amount: </label>  
+                    <input id="moneyAmount" formControlName="moneyAmount" type="textbox" class="form-control" required appTwoDigitDecimalNumber/>  
                 </div>  
             </div>  
             <div class="panel-footer">  
-                <button type="submit" class="btn btn-primary">Perform Transaction!</button>  
+                <button [disabled]="!formTransaction.valid" type="submit" class="btn btn-primary">Perform Transaction!</button>  
             </div>  
         </div>  
     </form>  

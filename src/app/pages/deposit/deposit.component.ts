@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';  
-import { FormGroup, FormBuilder } from '@angular/forms';  
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';  
 import { AccountService } from '../../shared/services/account.service';  
 import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -17,8 +17,8 @@ export class DepositComponent implements OnInit {
 
   ngOnInit(): void {  
     this.formTransaction = this._fb.group({  
-      accountId: "",  
-      moneyAmount: ""  
+      accountId: new FormControl('', Validators.required),  
+      moneyAmount: new FormControl('', Validators.required)  
     });  
   }
 
@@ -26,8 +26,11 @@ export class DepositComponent implements OnInit {
     let id = this.formTransaction.value.accountId;
     let dto = {moneyAmount: this.formTransaction.value.moneyAmount};
     this.accountService.deposit(id, dto).pipe(take(1)).subscribe(d => {
-        this.toastr.success('Successful deposit!', 'You have successfuly deposit ' 
-        + dto.moneyAmount + " on your account!");
+        this.toastr.success("You have successfuly deposit $"
+        + dto.moneyAmount + " on your account!", "Successful Deposit!");
+      }, err => {
+        this.toastr.error("Please enter a valid account identifier" + 
+          " and money amount!", "The Request Failed!");
       }
     );
   }  

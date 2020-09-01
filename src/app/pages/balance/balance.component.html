@@ -2,7 +2,8 @@
     <form [formGroup]="formTransaction" (ngSubmit)="performTransaction()">  
         <div class="panel panel-primary">  
             <div class="panel-heading">  
-                <h2 class="panel-title">Check Bank Checking Account</h2> 
+                <h2 *ngIf="!balance" class="panel-title">Check Bank Checking Account</h2> 
+                <h2 *ngIf="balance" class="panel-title">You have ${{balance['moneyAmount']}}</h2>
                 <hr class="my-4"> 
             </div>  
             <div class="panel-body">  
@@ -12,9 +13,8 @@
                 </div>  
             </div>  
             <div class="panel-footer">  
-                <button type="submit" class="btn btn-primary">Check Balance</button>  
+                <button [disabled]="!formTransaction.valid" type="submit" class="btn btn-primary">Check Balance</button>  
             </div>  
         </div>  
     </form>  
-    {{balance}}
 </div>  

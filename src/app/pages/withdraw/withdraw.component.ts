@@ -2,7 +2,7 @@ import {
   Component,  
   OnInit
 } from '@angular/core';  
-import { FormGroup, FormBuilder } from '@angular/forms';  
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';  
 import { AccountService } from '../../shared/services/account.service';  
 import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -21,8 +21,8 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit(): void {  
     this.formTransaction = this._fb.group({  
-      accountId: "",  
-      moneyAmount: ""  
+      accountId: new FormControl('', Validators.required),  
+      moneyAmount: new FormControl('', Validators.required)  
     });  
   }
 
@@ -30,8 +30,11 @@ export class WithdrawComponent implements OnInit {
     let id = this.formTransaction.value.accountId;
     let dto = {moneyAmount: this.formTransaction.value.moneyAmount};
     this.accountService.withdraw(id, dto).pipe(take(1)).subscribe(d => {
-        this.toastr.success('Successful withdraw!', 'You have successfuly withdraw ' 
-          + dto.moneyAmount + " from your account!");
+        this.toastr.success("You have successfuly withdraw $"
+          + dto.moneyAmount + " on your account!", "Successful withdraw!");
+      }, err => {
+        this.toastr.error("Please enter a valid account identifier" + 
+          " and money amount!", "The Request Failed!");
       }
     );
   }  

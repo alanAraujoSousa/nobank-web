@@ -13,6 +13,8 @@ import { DepositComponent } from './pages/deposit/deposit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Globals } from './globals';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TwoDigitDecimalNumberDirective } from './shared/directives/two-digit-decimal-number.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
     WithdrawComponent,
     HomeComponent,                                        
     BalanceComponent,
-    DepositComponent
+    DepositComponent,
+    TwoDigitDecimalNumberDirective
   ],
   imports: [
     HttpClientModule,
@@ -30,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     FormsModule,  
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot() 
   ],
   providers: [Globals],
